@@ -52,7 +52,7 @@ async function run() {
   const duration_str = argv[2]
   const font_style = argv[3] || 'plain'
   if (!(argv.length >= 3 && argv.length <= 4) || !duration_str.match(/^\d+$/) || !['plain', 'bright', 'sinister'].includes(font_style)) {
-    print_error_and_exit('Usage: node bomb-defusal-timer.js seconds [plain|bright|sinister]')
+    print_error_and_exit('Usage: node bomb-defusing-timer.js seconds [plain|bright|sinister]')
   }
 
   const font = Fonts[font_style]
