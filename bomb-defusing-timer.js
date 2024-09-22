@@ -43,8 +43,9 @@ function format_countdown(duration, t_remaining) {
 }
 
 
-function play_audio_file(filename) {
-  return spawn('afplay', [filename], {stdio: 'ignore'})
+function play_audio_file(filename, repeat = false) {
+  const args = repeat ? ['watch', '-n0', 'afplay', filename] : ['afplay', filename]
+  return spawn(args[0], args.slice(1), {stdio: 'ignore'})
 }
 
 
@@ -59,7 +60,7 @@ async function run() {
   const duration = Number(duration_str)
   format_countdown(duration, 0)  // Check valid
 
-  const ticking_sound = play_audio_file('files/ticking-fast.mp3')
+  const ticking_sound = play_audio_file('files/ticking-fast.mp3', true)
 
   await wait(500)
   let t_start = performance.now()
